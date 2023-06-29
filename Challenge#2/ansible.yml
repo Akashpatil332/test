@@ -2,27 +2,26 @@
  - name: Ansible code
    hosts: localhost
    tasks:
-    - name: Creating AWS ec2 instance using Ansible
+    - name: Creating AWS ec2 instance using Ansible   ### Createing ec2 instance from ansible.
       ec2:
       key_name: "key_par_name"
-      instance_type: t2.micro
+      instance_type: "t2.micro"
       image: "ami id"
-      region: eu-west-1
+      region: "eu-west-1"
       wait: yes
       count: 1
       vpc_subnet_id: "your vpc id"
       assign_public_ip: yes
-      tag: ec2_instance_created_through_ansible
+      tag: "ec2_instance_created_through_ansible"
       aws_access_key: "your access key"
       Aws_secret_key: "your seret key"
   
   - ec2_instance_facts:
     region: "eu-west-1"
     filters:
-       "tag:Name": ec2_instance_created_through_ansible
+       "tag:Name": ec2_instance_created_through_ansible  ## It will gather this instances metadata details 
 
-    register: ec2_metadata
+    register: ec2_metadata                               ## Stores the metadata output in register "ec2_metadata"
 
-  - debug: msg="{{ ec2_metadata.instances }}"
-
-  - debug: msg="{{ ec2_metadata.instances[0].public_ip_address }}"
+  - debug:
+      var: ec2_metadata                                  ## displys the output in JSON format. 

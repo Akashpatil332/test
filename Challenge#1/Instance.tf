@@ -1,4 +1,6 @@
-resource "aws_instance" "web" {
+## Creating aws ec2 instances with apache web service 
+
+resource "aws_instance" "web" {  
   ami             = "${lookup(var.AMIS, var.aws_region)}"
   instance_type   = "t2.micro"
 

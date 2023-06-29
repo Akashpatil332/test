@@ -1,3 +1,5 @@
+##Creating security group with ssh and http allowed 
+
 resource "aws_security_group" "allow_ssh" {
   name = "allow_ssh"
   vpc_id = aws_vpc.main_vpc.id
